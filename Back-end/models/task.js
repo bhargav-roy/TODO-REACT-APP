@@ -1,7 +1,7 @@
 const { Sequelize, DataTypes } = require("sequelize");
 const { sequelize } = require("../config/db"); // Import the database connection
 
-const Task = sequelize.define(
+const Task = db.sequelize.define(
   "Task",
   {
     title: {
