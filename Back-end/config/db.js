@@ -1,4 +1,5 @@
-const Sequelize = require("sequelize");
+// config/db.js
+const { Sequelize } = require("sequelize");
 
 // Use DATABASE_URL if available (for Render, we typically use this)
 const sequelize = new Sequelize(process.env.DATABASE_URL, {
@@ -6,19 +7,14 @@ const sequelize = new Sequelize(process.env.DATABASE_URL, {
   logging: false, // Disable logging for cleaner output (optional)
 });
 
-// Test the database connection
-sequelize
-  .authenticate()
-  .then(() => {
+// Function to connect to the database
+const connectDB = async () => {
+  try {
+    await sequelize.authenticate();
     console.log("Connection has been established successfully.");
-  })
-  .catch((err) => {
-    console.error("Unable to connect to the database:", err);
-  });
+  } catch (error) {
+    console.error("Unable to connect to the database:", error);
+  }
+};
 
-var db = {};
-
-db.sequelize = sequelize;
-db.Sequelize = Sequelize;
-
-module.exports = db;
+module.exports = { sequelize, connectDB };

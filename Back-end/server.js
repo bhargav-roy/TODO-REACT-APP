@@ -1,8 +1,8 @@
 // server.js
 const express = require("express");
 const cors = require("cors");
-const { connectDB } = require("./config/db");
-const taskRoutes = require("./routes/taskroutes"); // Import your task routes
+const { connectDB } = require("./config/db"); // Correct import of connectDB
+const taskRoutes = require("./routes/taskroutes");
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -12,12 +12,11 @@ app.use(express.json());
 app.use(cors()); // Enable Cross-Origin Requests
 
 // Connect to the database
-connectDB();
+connectDB(); // Call the connectDB function
 
 // Use the taskRoutes
-app.use("/api", taskRoutes); // Mount routes under '/api' path
+app.use("/api", taskRoutes);
 
-// Start the server
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
