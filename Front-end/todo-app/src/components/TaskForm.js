@@ -1,14 +1,30 @@
-// src/components/TaskForm.js
 import React, { useState } from "react";
+import axios from "axios";
 
-const TaskForm = ({ addTask }) => {
+const TaskForm = () => {
   const [input, setInput] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (input.trim()) {
-      addTask(input);
-      setInput("");
+      try {
+        // Send the new task to the backend API
+        const response = await axios.post(
+          `${process.env.REACT_APP_API_URL}/api/tasks`,
+          {
+            title: input,
+            description: "",
+            isCompleted: false,
+          }
+        );
+
+        // Optionally, handle success and reset input
+        console.log("Task added:", response.data);
+        setInput(""); // Clear the input after adding the task
+      } catch (error) {
+        // Handle error (e.g., show an error message to the user)
+        console.error("Error adding task:", error);
+      }
     }
   };
 
