@@ -1,6 +1,6 @@
 // src/components/TaskItem.js
 import React, { useState } from "react";
-import axios from "axios";
+import axios from "../axiosInstance";
 
 const TaskItem = ({ task, editTask, deleteTask, toggleComplete }) => {
   const [isEditing, setIsEditing] = useState(false);

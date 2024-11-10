@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import TaskForm from "./TaskForm";
 import TaskItem from "./TaskItem";
-import axios from "axios";
+import axios from "../axiosInstance";
 import "./TaskList.css";
 
 const TaskList = () => {
